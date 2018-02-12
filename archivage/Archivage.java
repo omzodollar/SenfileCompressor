@@ -21,7 +21,10 @@ public class Archivage {
 	    DataInputStream reader = null;
 	    
 	    try{
-	      writer = new DataOutputStream(new BufferedOutputStream(new FileOutputStream("test.txt")));
+				
+				File nomFichier = new File("Archive.sfc");
+				nomFichier.createNewFile();	
+	      writer = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(nomFichier)));
 	      
 	      //On recupere les fichiers du dossier à archiver
 	      File[] toPack = directory.listFiles(); 

@@ -53,9 +53,9 @@ public class Desarchivage {
 	}
 
 
-	public void unPack(File directory) {
+	public void unPackInDirectory(File fichier,String directory) {
 		//Commencer le packaging de fichier 
-		if(directory == null)
+		if(fichier == null)
 		{
 			System.out.println("Dossier non choisi ! ");
 			return;
@@ -63,7 +63,7 @@ public class Desarchivage {
 		
 	
 		//On cr�e un nouveau fichier de sortie
-				File out = new File("desarchiver");
+				File out = new File(directory);
 				
 				if(!out.exists())
 				{
@@ -71,7 +71,7 @@ public class Desarchivage {
 		}
 		//On initialise le flux de sortie pour ecrire dans notre fichier de compression
 		try {
-			dis = new DataInputStream(new BufferedInputStream(new FileInputStream(directory)));
+			dis = new DataInputStream(new BufferedInputStream(new FileInputStream(fichier)));
 		} catch (FileNotFoundException e1) {
 			System.out.println("Impossible de lire dans le fichier source ! ");
 			return;
@@ -79,7 +79,7 @@ public class Desarchivage {
 		
 		//Si on peut ecrire dans le fichier, alors on d�marre le packaging 
 		try {
-			readFile(directory,out);
+			readFile(fichier,out);
 		     System.out.println("desarchivage complet : ");
 
 		} catch (IOException e2) {
@@ -95,6 +95,8 @@ public class Desarchivage {
 		}
 
 	}
+	
+	
 	 
 	
 }

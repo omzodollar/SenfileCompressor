@@ -20,6 +20,7 @@ public class SenFileCompressor{
         CharSequence cs3= "-h";
         CharSequence cs4= "-r";
         CharSequence cs5= "-v";
+        Desarchivage desarchive=new Desarchivage();
 
         if(args.length < 1){
 
@@ -35,8 +36,7 @@ public class SenFileCompressor{
                 System.out.println("Attention les options -c -d et -h sont mutuellement exclusives!!!");
                 return;
             }
-        
-                
+                       
             System.out.println("\n\t\t *****************************************  Aide du programme!!!  *****************************************");
             System.out.println("\n \t Cette partie  du programme est accessible en tapant  la commande suivante: ");
             System.out.println("\n \t java SenFileCompressor -h");
@@ -60,7 +60,7 @@ public class SenFileCompressor{
             System.out.println("\n \t Par exemple: Java SenFileCompressor –d fichier.sfc [–r cheminVersRepertoire [–f] ] ");
             System.out.println("\n\t\t ****************************** Verbosite du programme!!!  *******************************");
             System.out.println("\n \t L'option -v concerne la verbosite du programme qui donnera les details de l'execution du programme comme par exemple ");
-            System.out.println("\n \t Java SenFileCompressor –c fic1 fic2 fic3... [–r cheminVersRepertoire [–f] ] [–v]");
+            System.out.println("\n \t       Java SenFileCompressor –c fic1 fic2 fic3... [–r cheminVersRepertoire [–f] ] [–v]");
             System.out.println("\n \t –d fichier.sfc [–r cheminVersRepertoire [–f] ] [–v]");
             System.out.println("\n  ");        
             
@@ -99,13 +99,10 @@ public class SenFileCompressor{
                 }
            
                 System.out.println("Integralite des fichiers contenus dans l'archive!!!");
-                Desarchivage desarchive=new Desarchivage();
-                String dirName =args[1] ;
-                File dir = new File(dirName);
-                desarchive.unPack(dir);         
-   
-
-
+                String fileName =args[1] ;
+                String dirName =args[2] ;
+                File fichieAdesarchiver = new File(fileName);
+                desarchive.unPackInDirectory(fichieAdesarchiver,dirName);         
         }          
         
     }
