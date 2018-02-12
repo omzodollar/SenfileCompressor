@@ -57,7 +57,7 @@ public class Desarchivage {
 		//Commencer le packaging de fichier 
 		if(fichier == null)
 		{
-			System.out.println("Dossier non choisi ! ");
+			System.out.println("fichier d'archive non choisi ! ");
 			return;
 		}
 		

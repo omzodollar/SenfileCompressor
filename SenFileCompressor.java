@@ -14,13 +14,15 @@ import java.io.IOException;
 public class SenFileCompressor{
   
     public static void main(String[] args){
-
+        CharSequence cs6= "-f";
         CharSequence cs1= "-c";
         CharSequence cs2= "-d";
         CharSequence cs3= "-h";
         CharSequence cs4= "-r";
         CharSequence cs5= "-v";
         Desarchivage desarchive=new Desarchivage();
+        Archivage archive=new Archivage();
+
 
         if(args.length < 1){
 
@@ -83,7 +85,6 @@ public class SenFileCompressor{
             }
 
             
-            Archivage archive=new Archivage();
             String dirName = args[1];
             File dir = new File(dirName);
             archive.packDirectory(dir);            
@@ -91,18 +92,27 @@ public class SenFileCompressor{
 
         else if(args[0].equals("-d"))
         {
-             for(int i=0; i<args.length; i++)
-
+             for(int i=0; i<args.length; i++){ 
                 if (args[i].contains(cs1)==true || args[i].contains(cs3)==true){
                     System.out.println("Attention les options -c -d et -h sont mutuellement exclusives!!!");
                     return;
                 }
-           
-                System.out.println("Integralite des fichiers contenus dans l'archive!!!");
-                String fileName =args[1] ;
-                String dirName =args[2] ;
-                File fichieAdesarchiver = new File(fileName);
-                desarchive.unPackInDirectory(fichieAdesarchiver,dirName);         
+                 if ((args[i].contains(cs6)==true)) 
+                 {
+                    System.out.println("Integralite des fichiers contenus dans l'archive!!!");
+                    String fileName =args[1] ;
+                     String dirName =args[args.length-1] ;
+                     File fichieAdesarchiver = new File(fileName);
+                     desarchive.unPackInDirectory(fichieAdesarchiver,dirName);    
+                     return;
+                 }
+                     System.out.println("Integralite des fichiers contenus dans l'archive!!!");
+                    String fileName =args[1] ;
+                     String dirName ="./" ;
+                     File fichieAdesarchiver = new File(fileName);
+                     desarchive.unPackInDirectory(fichieAdesarchiver,dirName);    
+            }
+                
         }          
         
     }
